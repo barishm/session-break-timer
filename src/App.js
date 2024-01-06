@@ -18,7 +18,6 @@ import { decrementBreakTime,
 function App() {
   const dispatch = useDispatch();
   const {breakTime,sessionTime,timeLeft,timingType,isRunning} = useSelector((state) => state.time);
-  let timeout;
   
 
   const timeFormatter = () => {
@@ -43,7 +42,6 @@ function App() {
   }
 
   const handlePlay = () => {
-    clearTimeout(timeout);
     dispatch(setIsRunning());
   }
 
@@ -63,17 +61,21 @@ function App() {
   }
 
   useEffect(() => {
-    if(isRunning){
-      timeout = setTimeout(() => {
-        if(timeLeft && isRunning){
+    let intervalId;
+  
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        if (timeLeft > 0) {
           dispatch(setTimeLeft(timeLeft - 1));
+        } else {
+          resetTimer();
         }
       }, 1000);
-      resetTimer()
-    }else {
-      clearTimeout(timeout)
     }
-  }, [isRunning, timeLeft, timeout])
+
+    return () => clearInterval(intervalId);
+  
+  }, [isRunning, timeLeft, dispatch, resetTimer]);
 
 
   return (

@@ -1,6 +1,6 @@
 import "./App.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect,React } from "react";
 import { decrementBreakTime, 
   incrementBreakTime, 
   decrementSessionTime, 
@@ -45,20 +45,20 @@ function App() {
     dispatch(setIsRunning());
   }
 
-  const resetTimer = () => {
+  const resetTimer = React.useCallback(() => {
     const audio = document.getElementById("beep");
-    if(!timeLeft && timingType === "Session"){
+    if (!timeLeft && timingType === "Session") {
       dispatch(setTimeLeft(breakTime * 60))
       dispatch(setTimingType("Break"))
       audio.play()
     }
-    if(!timeLeft && timingType === "Break"){
+    if (!timeLeft && timingType === "Break") {
       dispatch(setTimeLeft(sessionTime * 60))
       dispatch(setTimingType("Session"))
       audio.pause()
       audio.currentTime = 0;
     }
-  }
+  }, [dispatch, timeLeft, timingType, breakTime, sessionTime]);
 
   useEffect(() => {
     let intervalId;

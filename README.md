@@ -16,4 +16,5 @@ CSS
 JavaScript  
 React  
 Redux Toolkit  
+Bootstrap
 

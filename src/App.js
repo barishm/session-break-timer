@@ -80,44 +80,50 @@ function App() {
 
   return (
     <div id="container">
-    <div className="App">
-      <div className="main-title">25 + 5 Clock</div>
+    <div className="App" style={{marginTop: '200px',maxWidth:'800px',marginLeft:'auto',marginRight:'auto'}}>
+      <div className="main-title mb-4">25 + 5 Clock</div>
+      <div className="length-control-main d-flex justify-content-evenly ">
       <div className="length-control">
         <div id="break-label">Break Length</div>
-        <button className="btn-level" id="break-decrement" value="-" onClick={() => {dispatch(decrementBreakTime())}}>
+        <div className="d-flex justify-content-evenly">
+        <button className="btn-level btn btn-warning" id="break-decrement" value="-" onClick={() => {dispatch(decrementBreakTime())}}>
           <i className="fa fa-arrow-down fa-2x"></i>
         </button>
         <div className="btn-level" id="break-length">
           {breakTime}
         </div>
-        <button className="btn-level" id="break-increment" value="+" onClick={() => {dispatch(incrementBreakTime())}}>
+        <button className="btn-level btn btn-warning" id="break-increment" value="+" onClick={() => {dispatch(incrementBreakTime())}}>
           <i className="fa fa-arrow-up fa-2x"></i>
         </button>
       </div>
+      </div>
       <div className="length-control">
         <div id="session-label">Session Length</div>
-        <button className="btn-level" id="session-decrement" value="-" onClick={() => {dispatch(decrementSessionTime())}}>
+        <div className="d-flex justify-content-evenly">
+        <button className="btn-level btn btn-warning" id="session-decrement" value="-" onClick={() => {dispatch(decrementSessionTime())}}>
           <i className="fa fa-arrow-down fa-2x"></i>
         </button>
         <div className="btn-level" id="session-length">
           {sessionTime}
         </div>
-        <button className="btn-level" id="session-increment" value="+" onClick={() => {dispatch(incrementSessionTime())}}>
+        <button className="btn-level btn btn-warning" id="session-increment" value="+" onClick={() => {dispatch(incrementSessionTime())}}>
           <i className="fa fa-arrow-up fa-2x"></i>
         </button>
+        </div>
       </div>
-      <div className="timer" style={{ color: 'white' }}>
+      </div>
+      <div className="timer card position-relative top-50 start-50 translate-middle" style={{ color: 'black',marginTop:'100px',maxWidth:'200px ' }}>
         <div className="timer-wrapper">
           <div id="timer-label">{timingType}</div>
           <div id="time-left">{timeFormatter()}</div>
         </div>
       </div>
-      <div className="timer-control">
-        <button id="start_stop" onClick={handlePlay}>
-          <i className="fa fa-play fa-2x"></i>
+      <div className="timer-control d-flex justify-content-center">
+        <button id="start_stop" className="btn btn-warning mr-3" onClick={handlePlay}>
+          <i className="fa fa-play fa-2x" style={{marginRight:'6px'}}></i>
           <i className="fa fa-pause fa-2x"></i>
         </button>
-        <button id="reset" onClick={handleReset}>
+        <button id="reset" className="btn btn-warning" onClick={handleReset} style={{marginLeft:'40px'}}>
           <i className="fa fa-refresh fa-2x"></i>
         </button>
       </div>

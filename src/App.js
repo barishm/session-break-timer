@@ -1,6 +1,6 @@
 import "./App.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect,React } from "react";
+import React, { useEffect } from "react";
 import { decrementBreakTime, 
   incrementBreakTime, 
   decrementSessionTime, 
@@ -128,4 +128,3 @@ function App() {
 }
 
 export default App;
-
